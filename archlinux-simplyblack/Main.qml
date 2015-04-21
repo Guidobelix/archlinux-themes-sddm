@@ -32,6 +32,18 @@ Rectangle {
             source: "background.jpg"
         }
 
+		Image {
+            id: archlinux
+            x: 625
+            y: 375
+            width: 450
+            height: 150
+            anchors.verticalCenter: parent.verticalCenter
+            fillMode: Image.PreserveAspectFit
+            transformOrigin: Item.Center
+            source: "archlinux.png"
+        }
+
         Text {
             color: "#ffffff"
             text: qsTr("Welcome to ") + sddm.hostName
