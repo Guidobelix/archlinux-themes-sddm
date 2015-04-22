@@ -24,28 +24,12 @@ Rectangle {
         id: rectangle1
         property variant geometry: screenModel.geometry(screenModel.primary)
         color: "transparent"
-        anchors.rightMargin: 0
-        anchors.bottomMargin: 0
-        anchors.leftMargin: 0
-        anchors.topMargin: 0
         anchors.fill: parent
 
         Image {
             id: background
             anchors.fill: parent
-            source: "background.png"
-        }
-
-        Image {
-            id: archlinux
-            width: 450
-            height: 150
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: -100
-            anchors.horizontalCenterOffset: 0
-            fillMode: Image.PreserveAspectFit
-            transformOrigin: Item.Center
-            source: "archlinux.png"
+            source: "background.jpg"
         }
 
         Text {
@@ -58,12 +42,48 @@ Rectangle {
             font.pixelSize: 24
         }
 
+        Button {
+            id: shutdownButton
+            color: "#0088cc"
+            text: qsTr("Shutdown")
+            borderColor: "#333333"
+            activeColor: "#0088cc"
+            border.color: "#333333"
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+
+            onClicked: sddm.powerOff()
+
+            KeyNavigation.backtab: loginButton; KeyNavigation.tab: rebootButton
+        }
+
+        Button {
+            id: rebootButton
+            color: "#0088cc"
+            text: qsTr("Reboot")
+            border.color: "#333333"
+            activeColor: "#0088cc"
+            borderColor: "#333333"
+            anchors.right: parent.right
+            anchors.rightMargin: 100
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+
+            onClicked: sddm.reboot()
+
+            KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
+        }
+
         Column {
             id: column1
-            width: 510
+            width: 511
             height: 245
-            anchors.centerIn: parent
-            anchors.verticalCenterOffset: 200
+            anchors.top: parent.top
+            anchors.topMargin: 100
+            anchors.left: parent.left
+            anchors.leftMargin: 50
             spacing: 12
 
             Column {
@@ -144,6 +164,7 @@ Rectangle {
                 ComboBox {
                     id: session
                     width: parent.width; height: 30
+                    font.pixelSize: 14
 
                     arrowIcon: "angle-down.png"
 
@@ -167,39 +188,24 @@ Rectangle {
             }
 
             Row {
-                spacing: 4
+                id: row1
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 40
                 anchors.horizontalCenter: parent.horizontalCenter
-                property int btnWidth: Math.max(loginButton.implicitWidth,
-                                                shutdownButton.implicitWidth,
-                                                rebootButton.implicitWidth, 80) + 8
+                spacing: 4
+
                 Button {
                     id: loginButton
-                    text: textConstants.login
-                    width: parent.btnWidth
+                    color: "#0088cc"
+                    text: qsTr("Login")
+                    activeColor: "#0088cc"
+                    borderColor: "#333333"
+                    border.color: "#333333"
+                    anchors.horizontalCenter: parent.horizontalCenter
 
                     onClicked: sddm.login(name.text, password.text, session.index)
 
-                    KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
-                }
-
-                Button {
-                    id: shutdownButton
-                    text: textConstants.shutdown
-                    width: parent.btnWidth
-
-                    onClicked: sddm.powerOff()
-
-                KeyNavigation.backtab: loginButton; KeyNavigation.tab: rebootButton
-                }
-
-                Button {
-                    id: rebootButton
-                    text: textConstants.reboot
-                    width: parent.btnWidth
-
-                    onClicked: sddm.reboot()
-
-                    KeyNavigation.backtab: shutdownButton; KeyNavigation.tab: name
+                    KeyNavigation.backtab: session; KeyNavigation.tab: shutdownButton
                 }
             }
         }
