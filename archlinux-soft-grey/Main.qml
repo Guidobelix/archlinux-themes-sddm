@@ -48,7 +48,7 @@ Rectangle {
             width: 450
             height: 150
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -150
+            anchors.verticalCenterOffset: -100
             anchors.horizontalCenterOffset: 0
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.Center
@@ -60,14 +60,7 @@ Rectangle {
             width: Math.max(320, mainColumn.implicitWidth + 40)
             height: Math.max(320, mainColumn.implicitHeight + 40)
             anchors.verticalCenterOffset: Math.max(160, mainColumn.implicitHeight / 2 + 20)
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "#c3c3c3" }
-                GradientStop { position: 0.5; color: "#e5e5e5" }
-                GradientStop { position: 1.0; color: "#c3c3c3" }
-            }
-
-            border.color: "#ababab"
-            border.width: 1
+            color: "#000000"
 
             Column {
                 id: mainColumn
@@ -79,7 +72,7 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     width: parent.width
                     height: text.implicitHeight
-                    color: "black"
+                    color: "white"
                     text: textConstants.welcomeText.arg(sddm.hostName)
                     wrapMode: Text.WordWrap
                     font.pixelSize: 24
@@ -93,6 +86,7 @@ Rectangle {
                     Text {
                         id: lblName
                         width: parent.width
+                        color: "white"
                         text: textConstants.userName
                         font.bold: true
                         font.pixelSize: 12
@@ -121,6 +115,7 @@ Rectangle {
                     Text {
                         id: lblPassword
                         width: parent.width
+                        color: "white"
                         text: textConstants.password
                         font.bold: true
                         font.pixelSize: 12
@@ -158,6 +153,7 @@ Rectangle {
                             id: lblSession
                             width: parent.width
                             text: textConstants.session
+                            color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
                             font.pixelSize: 12
@@ -187,6 +183,7 @@ Rectangle {
                             id: lblLayout
                             width: parent.width
                             text: textConstants.layout
+                            color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
                             font.pixelSize: 12
@@ -210,6 +207,7 @@ Rectangle {
                         id: errorMessage
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: textConstants.prompt
+                        color: "white"
                         font.pixelSize: 10
                     }
                 }
