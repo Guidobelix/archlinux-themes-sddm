@@ -176,11 +176,10 @@ Rectangle {
                             KeyNavigation.backtab: password; KeyNavigation.tab: layoutBox
                         }
                     }
-
                     Row {
                         z: 101
                         width: parent.width * 0.8
-                        spacing : 4
+                        spacing : 10
                         anchors.bottom: parent.bottom
 
                         Text {
@@ -188,6 +187,7 @@ Rectangle {
                             width: parent.width / 3; height: 30
                             text: textConstants.layout
                             verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
                             color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
@@ -196,7 +196,7 @@ Rectangle {
 
                         LayoutBox {
                             id: layoutBox
-                            width: parent.width * 2 / 3; height: 30
+                            width: (parent.width * 2 / 3) -10; height: 30
 
                             arrowIcon: "angle-down.png"
 
