@@ -42,13 +42,14 @@ Rectangle {
         property variant geometry: screenModel.geometry(screenModel.primary)
         x: geometry.x; y: geometry.y; width: geometry.width; height: geometry.height
         color: "transparent"
+        transformOrigin: Item.Top
 
         Image {
             id: archlinux
             width: 450
             height: 150
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -100
+            anchors.verticalCenterOffset: -75
             anchors.horizontalCenterOffset: 0
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.Center
@@ -57,14 +58,15 @@ Rectangle {
 
         Rectangle {
             anchors.centerIn: parent
-            width: Math.max(320, mainColumn.implicitWidth + 40)
-            height: Math.max(320, mainColumn.implicitHeight + 40)
-            anchors.verticalCenterOffset: Math.max(160, mainColumn.implicitHeight / 2 + 20)
+            width: Math.max(480, mainColumn.implicitWidth + 40)
+            height: Math.max(240, mainColumn.implicitHeight + 40)
+            anchors.verticalCenterOffset: Math.max(180, mainColumn.implicitHeight * 0.75)
             color: "#0C0C0C"
 
             Column {
                 id: mainColumn
                 anchors.centerIn: parent
+                width: parent.width * 0.9
                 spacing: 12
 
                 Text {
@@ -80,21 +82,22 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                 }
 
-                Column {
+                Row {
                     width: parent.width
                     spacing: 4
                     Text {
                         id: lblName
-                        width: parent.width
+                        width: parent.width * 0.20; height: 30
                         color: "white"
                         text: textConstants.userName
+                        verticalAlignment: Text.AlignVCenter
                         font.bold: true
                         font.pixelSize: 12
                     }
 
                     TextBox {
                         id: name
-                        width: parent.width; height: 30
+                        width: parent.width * 0.8; height: 30
                         text: userModel.lastUser
                         font.pixelSize: 14
 
@@ -109,21 +112,22 @@ Rectangle {
                     }
                 }
 
-                Column {
+                Row {
                     width: parent.width
                     spacing : 4
                     Text {
                         id: lblPassword
-                        width: parent.width
+                        width: parent.width * 0.2; height: 30
                         color: "white"
                         text: textConstants.password
+                        verticalAlignment: Text.AlignVCenter
                         font.bold: true
                         font.pixelSize: 12
                     }
 
                     PasswordBox {
                         id: password
-                        width: parent.width; height: 30
+                        width: parent.width * 0.8; height: 30
                         font.pixelSize: 14
                         tooltipBG: "lightgrey"
 
@@ -143,16 +147,17 @@ Rectangle {
                     width: parent.width / 2
                     z: 100
 
-                    Column {
+                    Row {
                         z: 100
-                        width: parent.width * 1.3
+                        width: parent.width * 1.2
                         spacing : 4
                         anchors.bottom: parent.bottom
 
                         Text {
                             id: lblSession
-                            width: parent.width
+                            width: parent.width / 3; height: 30
                             text: textConstants.session
+                            verticalAlignment: Text.AlignVCenter
                             color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
@@ -161,8 +166,7 @@ Rectangle {
 
                         ComboBox {
                             id: session
-                            width: parent.width; height: 30
-                            font.pixelSize: 14
+                            width: parent.width * 2 / 3; height: 30
 
                             arrowIcon: "angle-down.png"
 
@@ -173,16 +177,17 @@ Rectangle {
                         }
                     }
 
-                    Column {
+                    Row {
                         z: 101
-                        width: parent.width * 0.7
+                        width: parent.width * 0.8
                         spacing : 4
                         anchors.bottom: parent.bottom
 
                         Text {
                             id: lblLayout
-                            width: parent.width
+                            width: parent.width / 3; height: 30
                             text: textConstants.layout
+                            verticalAlignment: Text.AlignVCenter
                             color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
@@ -191,8 +196,7 @@ Rectangle {
 
                         LayoutBox {
                             id: layoutBox
-                            width: parent.width; height: 30
-                            font.pixelSize: 14
+                            width: parent.width * 2 / 3; height: 30
 
                             arrowIcon: "angle-down.png"
 
@@ -208,7 +212,7 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: textConstants.prompt
                         color: "white"
-                        font.pixelSize: 10
+                        font.pixelSize: 12
                     }
                 }
 
