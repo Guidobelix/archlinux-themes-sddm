@@ -226,6 +226,7 @@ Rectangle {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
+                        color: "#65bbd1"
 
                         onClicked: sddm.login(name.text, password.text, session.index)
 
@@ -236,6 +237,7 @@ Rectangle {
                         id: shutdownButton
                         text: textConstants.shutdown
                         width: parent.btnWidth
+                        color: "#65bbd1"
 
                         onClicked: sddm.powerOff()
 
@@ -246,6 +248,7 @@ Rectangle {
                         id: rebootButton
                         text: textConstants.reboot
                         width: parent.btnWidth
+                        color: "#65bbd1"
 
                         onClicked: sddm.reboot()
 
