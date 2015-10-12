@@ -131,6 +131,17 @@ Rectangle {
                         font.pixelSize: 14
                         tooltipBG: "lightgrey"
 
+                        // This hack courtesy of our friends at KDE: https://quickgit.kde.org/?p=plasma-workspace.git&a=blobdiff&h=275801dc5539a342276e4c9f6817ff3c80f7d020&hp=31423628c9a847344c0e3e27b98b73b6042cefe6&hb=dfc4b8b2a0e2b012f68f0192e29081ee230e8c03&f=lookandfeel%2Fcontents%2Floginmanager%2FMain.qml
+                        // focus works in qmlscene
+                        // but this seems to be needed when loaded from SDDM
+                        // I don't understand why, but we have seen this before in the old lock screen
+                        focus: true
+                        Timer {
+                            interval: 200
+                            running: true
+                            onTriggered: password.forceActiveFocus()
+                        }
+
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
 
                         Keys.onPressed: {
