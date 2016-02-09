@@ -2,7 +2,9 @@
 
 
 import QtQuick 2.0
+
 import SddmComponents 2.0
+
 
 Rectangle {
     width: 640
@@ -46,10 +48,10 @@ Rectangle {
 
         Image {
             id: archlinux
-            width: 450
-            height: 150
+            width: height * 3
+            height: parent.height / 6
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -75
+            anchors.verticalCenterOffset: -1 * height / 2
             anchors.horizontalCenterOffset: 0
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.Center
@@ -58,9 +60,9 @@ Rectangle {
 
         Rectangle {
             anchors.centerIn: parent
-            width: Math.max(480, mainColumn.implicitWidth + 40)
-            height: Math.max(240, mainColumn.implicitHeight + 40)
-            anchors.verticalCenterOffset: Math.max(180, mainColumn.implicitHeight * 0.75)
+            height: Math.max(parent.height / 3.75, mainColumn.implicitHeight + 40)
+            width: Math.max(height * 2, mainColumn.implicitWidth + 40)
+            anchors.verticalCenterOffset: Math.max(height * 0.75, mainColumn.implicitHeight * 0.75)
             color: "#0C0C0C"
 
             Column {
