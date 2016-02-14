@@ -2,7 +2,9 @@
 
 
 import QtQuick 2.0
+
 import SddmComponents 2.0
+
 
 Rectangle {
     width: 640
@@ -45,11 +47,11 @@ Rectangle {
         transformOrigin: Item.Top
 
         Image {
-            id: archlinux
-            width: 450
-            height: 150
+            id: archlogo
+            width: height * 3
+            height: parent.height / 6
             anchors.centerIn: parent
-            anchors.verticalCenterOffset: -75
+            anchors.verticalCenterOffset: -1 * height / 2
             anchors.horizontalCenterOffset: 0
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.Center
@@ -57,17 +59,18 @@ Rectangle {
         }
 
         Rectangle {
+            id: archlinux
             anchors.centerIn: parent
-            width: Math.max(480, mainColumn.implicitWidth + 40)
-            height: Math.max(240, mainColumn.implicitHeight + 40)
-            anchors.verticalCenterOffset: Math.max(180, mainColumn.implicitHeight * 0.75)
+            height: parent.height / 10 * 3
+            width: height * 1.8
+            anchors.verticalCenterOffset: height * 2 / 3
             color: "#000000"
 
             Column {
                 id: mainColumn
                 anchors.centerIn: parent
                 width: parent.width * 0.9
-                spacing: 12
+                spacing: archlinux.height / 22.5
 
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -77,29 +80,29 @@ Rectangle {
                     color: "white"
                     text: textConstants.welcomeText.arg(sddm.hostName)
                     wrapMode: Text.WordWrap
-                    font.pixelSize: 24
+                    font.pixelSize: archlinux.height / 11.75
                     elide: Text.ElideRight
                     horizontalAlignment: Text.AlignHCenter
                 }
 
                 Row {
                     width: parent.width
-                    spacing: 4
+                    spacing: Math.round(archlinux.height / 70)
                     Text {
                         id: lblName
-                        width: parent.width * 0.20; height: 30
+                        width: parent.width * 0.20; height: archlinux.height / 9
                         color: "white"
                         text: textConstants.userName
                         verticalAlignment: Text.AlignVCenter
                         font.bold: true
-                        font.pixelSize: 12
+                        font.pixelSize: archlinux.height / 22.5
                     }
 
                     TextBox {
                         id: name
-                        width: parent.width * 0.8; height: 30
+                        width: parent.width * 0.8; height: archlinux.height / 9
                         text: userModel.lastUser
-                        font.pixelSize: 14
+                        font.pixelSize: archlinux.height / 20
 
                         KeyNavigation.backtab: rebootButton; KeyNavigation.tab: password
 
@@ -114,27 +117,22 @@ Rectangle {
 
                 Row {
                     width: parent.width
-                    spacing : 4
+                    spacing : Math.round(archlinux.height / 70)
                     Text {
                         id: lblPassword
-                        width: parent.width * 0.2; height: 30
+                        width: parent.width * 0.2; height: archlinux.height / 9
                         color: "white"
                         text: textConstants.password
                         verticalAlignment: Text.AlignVCenter
                         font.bold: true
-                        font.pixelSize: 12
+                        font.pixelSize: archlinux.height / 22.5
                     }
 
                     PasswordBox {
                         id: password
-                        width: parent.width * 0.8; height: 30
-                        font.pixelSize: 14
+                        width: parent.width * 0.8; height: archlinux.height / 9
+                        font.pixelSize: archlinux.height / 20
                         tooltipBG: "lightgrey"
-
-                        // This hack courtesy of our friends at KDE: https://quickgit.kde.org/?p=plasma-workspace.git&a=blobdiff&h=275801dc5539a342276e4c9f6817ff3c80f7d020&hp=31423628c9a847344c0e3e27b98b73b6042cefe6&hb=dfc4b8b2a0e2b012f68f0192e29081ee230e8c03&f=lookandfeel%2Fcontents%2Floginmanager%2FMain.qml
-                        // focus works in qmlscene
-                        // but this seems to be needed when loaded from SDDM
-                        // I don't understand why, but we have seen this before in the old lock screen
                         focus: true
                         Timer {
                             interval: 200
@@ -154,30 +152,31 @@ Rectangle {
                 }
 
                 Row {
-                    spacing: 4
+                    spacing: Math.round(archlinux.height / 70)
                     width: parent.width / 2
                     z: 100
 
                     Row {
                         z: 100
                         width: parent.width * 1.2
-                        spacing : 4
+                        spacing : Math.round(archlinux.height / 70)
                         anchors.bottom: parent.bottom
 
                         Text {
                             id: lblSession
-                            width: parent.width / 3; height: 30
+                            width: parent.width / 3; height: archlinux.height / 9
                             text: textConstants.session
                             verticalAlignment: Text.AlignVCenter
                             color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
-                            font.pixelSize: 12
+                            font.pixelSize: archlinux.height / 22.5
                         }
 
                         ComboBox {
                             id: session
-                            width: parent.width * 2 / 3; height: 30
+                            width: parent.width * 2 / 3; height: archlinux.height / 9
+                            font.pixelSize: archlinux.height / 20
 
                             arrowIcon: "angle-down.png"
 
@@ -190,24 +189,25 @@ Rectangle {
                     Row {
                         z: 101
                         width: parent.width * 0.8
-                        spacing : 10
+                        spacing : archlinux.height / 27
                         anchors.bottom: parent.bottom
 
                         Text {
                             id: lblLayout
-                            width: parent.width / 3; height: 30
+                            width: parent.width / 3; height: archlinux.height / 9
                             text: textConstants.layout
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                             color: "white"
                             wrapMode: TextEdit.WordWrap
                             font.bold: true
-                            font.pixelSize: 12
+                            font.pixelSize: archlinux.height / 22.5
                         }
 
                         LayoutBox {
                             id: layoutBox
-                            width: (parent.width * 2 / 3) -10; height: 30
+                            width: (parent.width * 2 / 3) -10; height: archlinux.height / 9
+                            font.pixelSize: archlinux.height / 20
 
                             arrowIcon: "angle-down.png"
 
@@ -223,20 +223,22 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: textConstants.prompt
                         color: "white"
-                        font.pixelSize: 12
+                        font.pixelSize: archlinux.height / 22.5
                     }
                 }
 
                 Row {
-                    spacing: 4
+                    spacing: Math.round(archlinux.height / 70)
                     anchors.horizontalCenter: parent.horizontalCenter
                     property int btnWidth: Math.max(loginButton.implicitWidth,
                                                     shutdownButton.implicitWidth,
-                                                    rebootButton.implicitWidth, 80) + 8
+                                                    rebootButton.implicitWidth, archlinux.height / 3) + 8
                     Button {
                         id: loginButton
                         text: textConstants.login
                         width: parent.btnWidth
+                        height: archlinux.height / 9
+                        font.pixelSize: archlinux.height / 20
                         color: "#65bbd1"
 
                         onClicked: sddm.login(name.text, password.text, session.index)
@@ -248,6 +250,8 @@ Rectangle {
                         id: shutdownButton
                         text: textConstants.shutdown
                         width: parent.btnWidth
+                        height: archlinux.height / 9
+                        font.pixelSize: archlinux.height / 20
                         color: "#65bbd1"
 
                         onClicked: sddm.powerOff()
@@ -259,6 +263,8 @@ Rectangle {
                         id: rebootButton
                         text: textConstants.reboot
                         width: parent.btnWidth
+                        height: archlinux.height / 9
+                        font.pixelSize: archlinux.height / 20
                         color: "#65bbd1"
 
                         onClicked: sddm.reboot()
