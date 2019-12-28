@@ -10,6 +10,15 @@ The Theme is available through AUR:
 
 Manual Installation
 -------------------
-* copy the two folders (archlinux-simplyblack and archlinux-soft-grey) to /usr/share/apps/sddm/themes/
-* change CurrentTheme to archlinux-simplyblack or archlinux-soft-grey in /etc/sddm.conf
+* copy the two folders (archlinux-simplyblack and archlinux-soft-grey) to /usr/share/sddm/themes/
+```
+$ sudo cp -r archlinux-simplyblack/  /usr/share/sddm/themes/
+$ sudo cp -r archlinux-soft-grey/  /usr/share/sddm/themes/    
+```
+* change the current Theme to archlinux-simplyblack or archlinux-soft-grey in /etc/sddm.conf (sudo required)
+```
+[Theme]
+Current=archlinux-soft-grey 
+```
+
 * Have fun!
