@@ -15,8 +15,9 @@ Manual Installation
 $ sudo cp -r archlinux-simplyblack/  /usr/share/sddm/themes/
 $ sudo cp -r archlinux-soft-grey/  /usr/share/sddm/themes/    
 ```
-* change the current Theme to archlinux-simplyblack or archlinux-soft-grey in /etc/sddm.conf (sudo required)
+* change the current Theme to archlinux-simplyblack or archlinux-soft-grey in System Settings; or 
 ```
+$ sudo vim /etc/sddm.conf
 [Theme]
 Current=archlinux-soft-grey 
 ```
