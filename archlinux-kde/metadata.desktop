@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Arch Linux KDE
+Description=A simple SDDM theme for Arch Linux.
+Screenshot=screenshot.png
+License=CC-BY-SA
+Type=sddm-theme
+Version=1.0
+Screenshot=screenshot.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Theme-Id=archlinux-kde
+Theme-API=2.0
