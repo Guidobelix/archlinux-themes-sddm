@@ -133,12 +133,6 @@ Rectangle {
                         width: parent.width * 0.8; height: archlinux.height / 9
                         font.pixelSize: archlinux.height / 20
                         tooltipBG: "lightgrey"
-                        focus: true
-                        Timer {
-                            interval: 200
-                            running: true
-                            onTriggered: password.forceActiveFocus()
-                        }
 
                         KeyNavigation.backtab: name; KeyNavigation.tab: session
 
